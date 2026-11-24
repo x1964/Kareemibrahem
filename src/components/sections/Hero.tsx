@@ -190,7 +190,7 @@ export function Hero() {
               <a
                 href={site.cvPath}
                 download="Kareem-Ibrahem-CV.pdf"
-                className="group inline-flex items-center gap-1.5 px-3 py-4 text-sm font-medium text-fg-2 transition-colors hover:text-accent focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-accent max-sm:text-white/80 max-sm:hover:text-white"
+                className="group relative z-10 inline-flex items-center gap-1.5 px-3 py-4 text-sm font-medium text-fg-2 transition-colors hover:text-accent focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-accent"
               >
                 {t.hero.cv}
                 <ArrowRight className="size-4 transition-transform group-hover:translate-x-0.5 rtl:-scale-x-100 rtl:group-hover:-translate-x-0.5" />
