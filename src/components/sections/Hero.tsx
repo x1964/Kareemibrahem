@@ -94,7 +94,20 @@ export function Hero() {
               </p>
             </div>
 
-            <h1 className="font-display text-[11.5vw] font-medium leading-[1.18] tracking-[-0.01em] text-fg [text-wrap:balance] sm:text-[8.5vw] lg:text-[4.4rem] xl:text-[5.2rem]">
+            <div className="flex items-center gap-5 lg:block lg:gap-0">
+              {/* Circular portrait beside the headline — mobile/tablet only */}
+              <div className="size-24 shrink-0 self-start overflow-hidden rounded-full border border-line bg-surface shadow-[0_16px_36px_-16px_rgba(12,18,34,0.35)] ring-2 ring-accent/15 sm:size-28 lg:hidden">
+                <Image
+                  src="/images/portrait.webp"
+                  alt=""
+                  fill
+                  sizes="112px"
+                  className="object-cover object-[center_20%]"
+                  aria-hidden
+                />
+              </div>
+
+              <h1 className="min-w-0 flex-1 font-display text-[10vw] font-medium leading-[1.18] tracking-[-0.01em] text-fg [text-wrap:balance] sm:text-[7.5vw] lg:flex-none lg:text-[4.4rem] xl:text-[5.2rem]">
               {headlineLines.map((line, i) => (
                 <span
                   key={line}
@@ -120,7 +133,8 @@ export function Hero() {
                   </span>
                 </span>
               ))}
-            </h1>
+              </h1>
+            </div>
 
             <p
               data-hero-fade
@@ -168,8 +182,8 @@ export function Hero() {
             </div>
           </div>
 
-          {/* Right: portrait */}
-          <div data-hero-fade className="flex justify-center lg:justify-end">
+          {/* Right: portrait — desktop only; mobile uses the circular avatar above */}
+          <div data-hero-fade className="hidden justify-center lg:flex lg:justify-end">
             <div className="relative w-full max-w-[360px]">
               {/* Offset outline frame behind the portrait */}
               <div
