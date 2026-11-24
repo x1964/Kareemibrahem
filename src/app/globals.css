@@ -168,6 +168,20 @@ html[dir="rtl"] [class*="tracking-"] {
   animation: float-y 6s ease-in-out infinite;
 }
 
+/* Loading bar — a short accent segment sweeping across the track */
+@keyframes loading-bar {
+  0% {
+    transform: translateX(-100%);
+  }
+  100% {
+    transform: translateX(400%);
+  }
+}
+
+.animate-loading-bar {
+  animation: loading-bar 1.2s ease-in-out infinite;
+}
+
 /* ---- Signature wordmark for the footer ---- */
 .footer-wordmark {
   color: transparent;
