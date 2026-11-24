@@ -70,7 +70,7 @@ export function Hero() {
       <div className="relative mx-auto flex w-full max-w-[1400px] flex-1 flex-col justify-center px-5 py-12 sm:px-8 lg:px-12 lg:py-16">
         <div className="grid items-center gap-14 lg:grid-cols-[1.35fr_1fr] lg:gap-16">
           {/* Left: copy */}
-          <div>
+          <div className="relative isolate">
             {/* Availability pill */}
             <div data-hero-fade className="mb-8">
               <span className="inline-flex items-center gap-2.5 rounded-full border border-line bg-surface px-4 py-2 text-sm text-fg-2 shadow-sm">
@@ -84,30 +84,45 @@ export function Hero() {
 
             {/* Name + role */}
             <div data-hero-fade className="mb-6 flex items-center gap-3">
-              <span aria-hidden className="h-px w-10 bg-accent" />
-              <p className={`${labelStyle} text-accent`}>
-                <span className="text-fg">{site.name}</span>
-                <span className="mx-2 text-fg-3" aria-hidden>
+              <span aria-hidden className="h-px w-10 bg-accent max-sm:bg-white/40" />
+              <p className={`${labelStyle} text-accent max-sm:text-white/70`}>
+                <span className="text-fg max-sm:text-white">{site.name}</span>
+                <span className="mx-2 text-fg-3 max-sm:text-white/40" aria-hidden>
                   /
                 </span>
                 {isAr ? "مطوّر متكامل" : site.role}
               </p>
             </div>
 
-            <div className="flex items-center gap-5 lg:block lg:gap-0">
-              {/* Circular portrait beside the headline — mobile/tablet only */}
-              <div className="size-24 shrink-0 self-start overflow-hidden rounded-full border border-line bg-surface shadow-[0_16px_36px_-16px_rgba(12,18,34,0.35)] ring-2 ring-accent/15 sm:size-28 lg:hidden">
+            <div className="relative">
+              {/* Large circular portrait backdrop — phones only, headline sits on it */}
+              <div
+                aria-hidden
+                className="absolute left-1/2 top-1/2 -z-10 size-[130vw] -translate-x-1/2 -translate-y-1/2 overflow-hidden rounded-full sm:hidden"
+              >
                 <Image
                   src="/images/portrait.webp"
                   alt=""
                   fill
-                  sizes="112px"
+                  sizes="130vw"
                   className="object-cover object-[center_20%]"
-                  aria-hidden
                 />
               </div>
 
-              <h1 className="min-w-0 flex-1 font-display text-[10vw] font-medium leading-[1.18] tracking-[-0.01em] text-fg [text-wrap:balance] sm:text-[7.5vw] lg:flex-none lg:text-[4.4rem] xl:text-[5.2rem]">
+              <div className="flex items-center gap-5 lg:block lg:gap-0">
+                {/* Circular portrait beside the headline — tablets only */}
+                <div className="hidden size-24 shrink-0 self-start overflow-hidden rounded-full border border-line bg-surface shadow-[0_16px_36px_-16px_rgba(12,18,34,0.35)] ring-2 ring-accent/15 sm:block sm:size-28 lg:hidden">
+                  <Image
+                    src="/images/portrait.webp"
+                    alt=""
+                    fill
+                    sizes="112px"
+                    className="object-cover object-[center_20%]"
+                    aria-hidden
+                  />
+                </div>
+
+              <h1 className="min-w-0 flex-1 font-display text-[11.5vw] font-medium leading-[1.18] tracking-[-0.01em] text-fg [text-wrap:balance] max-sm:text-white sm:text-[7.5vw] lg:flex-none lg:text-[4.4rem] xl:text-[5.2rem]">
               {headlineLines.map((line, i) => (
                 <span
                   key={line}
@@ -118,13 +133,13 @@ export function Hero() {
                     {i === headlineLines.length - 1 ? (
                       isAr ? (
                         <>
-                          <span className="text-fg">إلى </span>
-                          <span className="text-accent">واقع.</span>
+                          <span className="text-fg max-sm:text-white">إلى </span>
+                          <span className="text-accent max-sm:text-[#9db9ff]">واقع.</span>
                         </>
                       ) : (
                         <>
-                          <span className="text-fg">into </span>
-                          <span className="text-accent">reality.</span>
+                          <span className="text-fg max-sm:text-white">into </span>
+                          <span className="text-accent max-sm:text-[#9db9ff]">reality.</span>
                         </>
                       )
                     ) : (
@@ -134,14 +149,15 @@ export function Hero() {
                 </span>
               ))}
               </h1>
-            </div>
+              </div>
 
             <p
               data-hero-fade
-              className="mt-8 max-w-xl text-lg leading-relaxed text-fg-2 sm:text-xl sm:leading-relaxed"
+              className="mt-8 max-w-xl text-lg leading-relaxed text-fg-2 max-sm:text-white/80 sm:text-xl sm:leading-relaxed"
             >
               {t.hero.description}
             </p>
+            </div>
 
             {/* Actions */}
             <div
@@ -174,7 +190,7 @@ export function Hero() {
               <a
                 href={site.cvPath}
                 download="Kareem-Ibrahem-CV.pdf"
-                className="group inline-flex items-center gap-1.5 px-3 py-4 text-sm font-medium text-fg-2 transition-colors hover:text-accent focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-accent"
+                className="group inline-flex items-center gap-1.5 px-3 py-4 text-sm font-medium text-fg-2 transition-colors hover:text-accent focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-accent max-sm:text-white/80 max-sm:hover:text-white"
               >
                 {t.hero.cv}
                 <ArrowRight className="size-4 transition-transform group-hover:translate-x-0.5 rtl:-scale-x-100 rtl:group-hover:-translate-x-0.5" />
@@ -182,7 +198,7 @@ export function Hero() {
             </div>
           </div>
 
-          {/* Right: portrait — desktop only; mobile uses the circular avatar above */}
+          {/* Right: portrait — desktop only; smaller screens use the circular treatments above */}
           <div data-hero-fade className="hidden justify-center lg:flex lg:justify-end">
             <div className="relative w-full max-w-[360px]">
               {/* Offset outline frame behind the portrait */}
