@@ -1,0 +1,193 @@
+@import "tailwindcss";
+
+@theme {
+  --color-ink: #ffffff;
+  --color-ink-2: #f5f6f8;
+  --color-surface: #ffffff;
+  --color-surface-hover: #eef1f5;
+  --color-accent: #145cff;
+  --color-accent-hover: #0f4bd8;
+  --color-accent-dim: #145cff14;
+  --color-fg: #0c1222;
+  --color-fg-2: #475467;
+  --color-fg-3: #8a94a6;
+  --color-line: #e4e7ec;
+
+  --font-display: var(--font-manrope), ui-sans-serif, system-ui, sans-serif;
+  --font-sans: var(--font-manrope), var(--font-thmanyah-display), ui-sans-serif, system-ui, sans-serif;
+  --font-mono: var(--font-jetbrains-mono), ui-monospace, "SFMono-Regular", monospace;
+}
+
+:root {
+  color-scheme: light;
+}
+
+html {
+  scroll-behavior: auto;
+}
+
+a,
+button {
+  touch-action: manipulation;
+  -webkit-tap-highlight-color: transparent;
+}
+
+a:focus-visible,
+button:focus-visible,
+input:focus-visible,
+textarea:focus-visible {
+  outline: 2px solid var(--color-accent);
+  outline-offset: 2px;
+}
+
+body {
+  background-color: var(--color-ink);
+  color: var(--color-fg);
+  font-family: var(--font-sans);
+  -webkit-font-smoothing: antialiased;
+  text-rendering: optimizeLegibility;
+  overflow-x: clip;
+}
+
+/* ---- Arabic (RTL) typography ---- */
+html[dir="rtl"] body {
+  font-family: var(--font-thmanyah-display), var(--font-sans);
+  font-weight: 400;
+}
+
+html[dir="rtl"] .font-display,
+html[dir="rtl"] h1,
+html[dir="rtl"] h2,
+html[dir="rtl"] h3,
+html[dir="rtl"] h4,
+html[dir="rtl"] blockquote {
+  font-family: var(--font-thmanyah-display), "Noto Naskh Arabic", serif;
+}
+
+/* Arabic has no case and letter-spacing breaks glyph joining — normalize it. */
+html[dir="rtl"] .font-mono {
+  font-family: var(--font-thmanyah-display), var(--font-sans);
+}
+
+/* Arabic script needs more vertical room: dots and diacritics clip at
+   tight Latin line-heights. */
+html[dir="rtl"] :is(p, li, dd) {
+  line-height: 1.9;
+}
+
+html[dir="rtl"] h1 {
+  line-height: 1.4;
+}
+
+html[dir="rtl"] :is(h2, h3, h4) {
+  line-height: 1.3;
+}
+
+html[dir="rtl"] [class*="tracking-"] {
+  letter-spacing: 0.02em;
+}
+
+::selection {
+  background: var(--color-accent);
+  color: #ffffff;
+}
+
+/* Slim light scrollbar */
+::-webkit-scrollbar {
+  width: 10px;
+}
+::-webkit-scrollbar-track {
+  background: var(--color-ink-2);
+}
+::-webkit-scrollbar-thumb {
+  background: var(--color-line);
+  border-radius: 8px;
+  border: 2px solid var(--color-ink-2);
+}
+::-webkit-scrollbar-thumb:hover {
+  background: var(--color-fg-3);
+}
+
+/* Subtle blueprint grid used in hero / section backdrops */
+.bg-grid {
+  background-image:
+    linear-gradient(to right, color-mix(in srgb, var(--color-fg) 6%, transparent) 1px, transparent 1px),
+    linear-gradient(to bottom, color-mix(in srgb, var(--color-fg) 6%, transparent) 1px, transparent 1px);
+  background-size: 72px 72px;
+}
+
+.bg-grid-fine {
+  background-image:
+    linear-gradient(to right, color-mix(in srgb, var(--color-fg) 5%, transparent) 1px, transparent 1px),
+    linear-gradient(to bottom, color-mix(in srgb, var(--color-fg) 5%, transparent) 1px, transparent 1px);
+  background-size: 24px 24px;
+}
+
+/* Outlined display text */
+.text-outline {
+  -webkit-text-stroke: 1px color-mix(in srgb, var(--color-fg) 30%, transparent);
+  color: transparent;
+}
+
+.spin-slow {
+  animation: spin-slow 16s linear infinite;
+}
+
+@keyframes spin-slow {
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+/* Infinite marquee — track must contain exactly two copies of the content */
+@keyframes marquee {
+  from {
+    transform: translateX(0);
+  }
+  to {
+    transform: translateX(-50%);
+  }
+}
+
+.animate-marquee {
+  animation: marquee 32s linear infinite;
+}
+
+/* Gentle float for the hero portrait */
+@keyframes float-y {
+  0%,
+  100% {
+    transform: translateY(0);
+  }
+  50% {
+    transform: translateY(-10px);
+  }
+}
+
+.animate-float {
+  animation: float-y 6s ease-in-out infinite;
+}
+
+/* ---- Signature wordmark for the footer ---- */
+.footer-wordmark {
+  color: transparent;
+  -webkit-text-stroke: 1px color-mix(in srgb, var(--color-fg) 18%, transparent);
+}
+
+/* Arabic letterforms are joined — an outline stroke breaks the joins,
+   so RTL gets a soft filled ghost instead. */
+html[dir="rtl"] .footer-wordmark {
+  -webkit-text-stroke: 0;
+  color: color-mix(in srgb, var(--color-fg) 10%, transparent);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
+}
