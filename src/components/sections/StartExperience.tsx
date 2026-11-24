@@ -75,7 +75,7 @@ export function StartExperience() {
   const [values, setValues] = useState<FormValues>(emptyValues);
   const [status, setStatus] = useState<"idle" | "sending" | "success" | "error">("idle");
 
-  const emailServiceEnabled = Boolean(process.env.RESEND_API_KEY);
+  const emailServiceEnabled = Boolean(process.env.NEXT_PUBLIC_WEB3FORMS_ACCESS_KEY);
   const labelCls = isAr ? "text-sm font-medium" : "font-mono text-[10px] uppercase tracking-[0.25em]";
   const BackArrow = isAr ? ArrowRight : ArrowLeft;
   const NextArrow = isAr ? ArrowLeft : ArrowRight;
@@ -161,14 +161,24 @@ export function StartExperience() {
       return;
     }
 
+    const formData = new FormData();
+    formData.append("access_key", process.env.NEXT_PUBLIC_WEB3FORMS_ACCESS_KEY ?? "");
+    formData.append(
+      "subject",
+      `${isAr ? "طلب مشروع" : "Project inquiry"} — ${values.name}`
+    );
+    formData.append("from_name", values.name);
+    formData.append("email", values.email);
+    formData.append("message", message);
+
     setStatus("sending");
     try {
-      const res = await fetch("/api/contact", {
+      const res = await fetch("https://api.web3forms.com/submit", {
         method: "POST",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({ name: values.name, email: values.email, message }),
+        body: formData,
       });
-      if (!res.ok) throw new Error("Request failed");
+      const data = (await res.json().catch(() => null)) as { success?: boolean } | null;
+      if (!res.ok || !data?.success) throw new Error("Request failed");
       setStatus("success");
     } catch {
       setStatus("error");

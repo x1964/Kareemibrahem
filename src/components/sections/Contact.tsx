@@ -14,7 +14,7 @@ import { clsx } from "clsx";
 
 export function Contact() {
   const { locale, t } = useLocale();
-  const emailServiceEnabled = Boolean(process.env.RESEND_API_KEY);
+  const emailServiceEnabled = Boolean(process.env.NEXT_PUBLIC_WEB3FORMS_ACCESS_KEY);
   const [copied, setCopied] = useState(false);
   const isAr = locale === "ar";
 
