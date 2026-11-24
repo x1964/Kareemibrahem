@@ -29,7 +29,7 @@ export function ProjectCard({ project, delay = 0 }: { project: Project; delay?: 
         className="group block overflow-hidden rounded-2xl border border-line bg-surface transition-all duration-300 hover:border-fg-3/60 hover:shadow-[0_24px_60px_-30px_rgba(12,18,34,0.3)]"
         aria-label={`${locale === "ar" ? "عرض دراسة حالة" : "View case study"}: ${project.name}`}
       >
-        <div className="overflow-hidden p-3 pb-0 sm:p-4 sm:pb-0">
+        <div data-project-visual className="overflow-hidden p-3 pb-0 will-change-transform sm:p-4 sm:pb-0">
           <ProjectVisual
             name={project.name}
             accent={project.accent}

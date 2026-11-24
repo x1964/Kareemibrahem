@@ -189,6 +189,64 @@ export const projects: Project[] = [
       "Open-source codebase on GitHub",
     ],
   },
+  {
+    slug: "kernellz",
+    index: "04",
+    name: "KernellZ",
+    tagline: "A software studio platform — marketing site, inquiry pipeline, and client workspace.",
+    description:
+      "The company platform for KernellZ — a bilingual marketing site with a production inquiry pipeline and a role-based client workspace, built on Next.js and Supabase.",
+    status: "Live",
+    website: "https://kernellz.vercel.app/",
+    github: "https://github.com/x1964/KernellZ",
+    tech: ["Next.js", "React", "TypeScript", "Supabase", "PostgreSQL", "Tailwind CSS"],
+    features: [
+      "Bilingual marketing site (English + Arabic RTL)",
+      "Project inquiry form with validation and spam controls",
+      "Supabase Auth with email and Google sign-in",
+      "Client portal: projects, milestones, tasks, files, chat",
+      "Staff operations and admin area",
+      "Role-based access (client / staff / admin / super_admin) with RLS",
+      "Signed, time-limited file URLs via Supabase Storage",
+    ],
+    accent: "#FDBA74",
+    overview: [
+      {
+        heading: "Overview",
+        body: "KernellZ is the company platform for my software studio — a single Next.js application combining a bilingual public marketing site, a production-grade project inquiry pipeline, and a role-based client workspace.",
+      },
+      {
+        heading: "Scope",
+        body: "The platform covers the full client journey: a visitor discovers the studio, submits an inquiry that is validated and stored durably, and approved clients sign in to a portal with their projects, milestones, tasks, shared files, and project-scoped chat.",
+      },
+    ],
+    problem: [
+      {
+        heading: "The challenge",
+        body: "A studio needs more than a landing page: inquiries must be captured reliably, clients need a private space to follow their projects, and the team needs operational tooling — all without building three separate products.",
+      },
+      {
+        heading: "The approach",
+        body: "One App Router codebase with strict TypeScript, Supabase for auth, Postgres data, and storage, and Row Level Security enforcing a client/staff/admin role model on every query.",
+      },
+    ],
+    objectives: [
+      "Ship a bilingual marketing site with full RTL support and per-page SEO metadata",
+      "Capture and store project inquiries with server-side validation and spam controls",
+      "Give clients a self-serve portal for projects, milestones, tasks, files, and chat",
+      "Give staff and admins operational tooling with strict role enforcement",
+    ],
+    responsibilities: [
+      "Full product architecture and implementation",
+      "Bilingual routing, RTL layout, and locale-aware metadata",
+      "Inquiry pipeline: validation, spam controls, PostgreSQL storage",
+      "Supabase Auth integration (email/password + Google)",
+      "Client portal: projects, milestones, tasks, shared files, chat",
+      "Staff and admin operations with role-based access control",
+      "Supabase Storage with signed, time-limited file URLs",
+      "CI, CodeQL, and production deployment on Vercel",
+    ],
+  },
 ];
 
 export function getProject(slug: string) {
